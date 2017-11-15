@@ -13,7 +13,7 @@ session = DBSession()
 
 @app.route('/')
 @app.route('/catalog/')
-def index():
+def indexCatalog():
     categories = session.query(Category).all()
     return render_template('category_index.html', categories = categories)
 
@@ -33,12 +33,12 @@ def newCategory():
 @app.route('/catalog/<category_slug>/')
 def showCategory(category_slug):
     category = session.query(Category).filter_by(slug=category_slug).one()
-    return render_template('category_show.html', category=category)
+    items = session.query(Item).filter_by(category_id=category.id).all()
+    return render_template('category_show.html', items=items, category=category)
 
 @app.route('/catalog/<category_slug>/edit', methods=['GET', 'POST'])
 def editCategory(category_slug):
     editCategory = session.query(Category).filter_by(slug=category_slug).one()
-
     if request.method == 'POST':
         if request.form['name']:
             editCategory.slug = request.form['name'].replace(" ", "")

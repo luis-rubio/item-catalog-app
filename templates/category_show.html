@@ -1,1 +1,11 @@
-{{ category.name }} with {{ category.id }}
+<p>
+  <a href="{{url_for('newItem', category_slug = category.slug)}}">Add item to {{ category.name }}</a>
+</p>
+
+<h1>{{ category.name }} items</h1>
+
+{% for i in items %}
+  <p>
+    {{ i.name }}
+  </p>
+{% endfor %}
