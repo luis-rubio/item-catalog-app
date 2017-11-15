@@ -15,7 +15,7 @@ session = DBSession()
 @app.route('/catalog/')
 def indexCatalog():
     categories = session.query(Category).all()
-    return render_template('category_index.html', categories = categories)
+    return render_template('index.html', categories = categories)
 
 # Category CRUD Routes
 @app.route('/catalog/new', methods=['GET', 'POST'])
@@ -60,19 +60,19 @@ def deleteCategory(category_slug):
 # Item CRUD Routes
 @app.route('/catalog/<category_slug>/new')
 def newItem(category_slug):
-    return "add item"
+    return render_template('item_new.html')
 
 @app.route('/catalog/<category_slug>/<int:item_id>')
 def showItem(category_slug, item_id):
-    return "display item"
+    return render_template('item_show.html')
 
 @app.route('/catalog/<category_slug>/<int:item_id>/edit')
 def editItem(category_slug, item_id):
-    return "edit item"
+    return render_template('item_edit.html')
 
 @app.route('/catalog/<category_slug>/<int:item_id>/delete')
 def deleteItem(category_slug, item_id):
-    return "delete item"
+    return render_template('item_delete.html')
 
 
 if __name__ == '__main__':
