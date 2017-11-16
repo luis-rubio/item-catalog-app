@@ -90,9 +90,16 @@ def editItem(category_slug, item_id):
     else:
         return render_template('item_edit.html', item=editedItem, category=category)
 
-@app.route('/catalog/<category_slug>/<int:item_id>/delete/')
+@app.route('/catalog/<category_slug>/<int:item_id>/delete/', methods=['GET', 'POST'])
 def deleteItem(category_slug, item_id):
-    return render_template('item_delete.html')
+    category = session.query(Category).filter_by(slug=category_slug).one()
+    itemToDelete = session.query(Item).filter_by(id=item_id).one()
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        return redirect(url_for('showCategory', category_slug=category.slug))
+    else:
+        return render_template('item_delete.html', item=itemToDelete, category=category)
 
 
 if __name__ == '__main__':

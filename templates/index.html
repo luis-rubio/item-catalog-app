@@ -1,4 +1,6 @@
+{% extends 'layout.html' %}
 
+{% block body %}
 <p><a href="{{url_for('newCategory')}}">Add Category</a><p>
 
 <p><h1>Categories</h1></p>
@@ -13,3 +15,4 @@
   </p>
 
 {% endfor %}
+{% endblock %}

@@ -1,3 +1,6 @@
+{% extends 'layout.html' %}
+
+{% block body %}
 <p>
   <b>Name: </b>{{ item.name }}
 </p>
@@ -7,4 +10,7 @@
 </p>
 
 
-<a href="{{ url_for('editItem', category_slug = category.slug, item_id = item.id) }}">Edit</a> ||| Delete
+<a href="{{ url_for('editItem', category_slug = category.slug, item_id = item.id) }}">Edit</a>
+|||
+<a href="{{ url_for('deleteItem', category_slug = category.slug, item_id = item.id) }}">Delete</a>
+{% endblock %}
