@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 from sqlalchemy import create_engine, exc
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Category, Item
+from database_setup import Base, Category, Item, User
 
 from flask import session as login_session
 import random, string
@@ -114,6 +114,28 @@ def gconnect():
     print "done!"
     return output
 
+# User Helper Functions
+def createUser(login_session):
+    newUser = User(name=login_session['username'], email=login_session[
+                   'email'], picture=login_session['picture'])
+    session.add(newUser)
+    session.commit()
+    user = session.query(User).filter_by(email=login_session['email']).one()
+    return user.id
+
+
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
+
+
+def getUserID(email):
+    try:
+        user = session.query(User).filter_by(email=email).one()
+        return user.id
+    except:
+        return None
+
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
@@ -157,7 +179,7 @@ def newCategory():
         return redirect('/login')
     if request.method == 'POST':
         urlSlug = request.form['name'].replace(" ", "")
-        newCategory = Category(name=request.form['name'],slug=urlSlug)
+        newCategory = Category(name=request.form['name'],slug=urlSlug,user_id=login_session['user_id'])
         if session.query(Category).filter_by(slug=urlSlug).count() < 1:
             session.add(newCategory)
             session.commit()
@@ -203,7 +225,7 @@ def newItem(category_slug):
         return redirect('/login')
     category = session.query(Category).filter_by(slug=category_slug).one()
     if request.method == 'POST':
-        newItem = Item(name=request.form['name'],description=request.form['description'],category_id=category.id)
+        newItem = Item(name=request.form['name'],description=request.form['description'],category_id=category.id,user_id=login_session['user_id'])
         session.add(newItem)
         session.commit()
         return redirect(url_for('showCategory', category_slug=category.slug))
