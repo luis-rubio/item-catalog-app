@@ -153,6 +153,8 @@ def indexCatalog():
 # Category CRUD Routes
 @app.route('/catalog/new/', methods=['GET', 'POST'])
 def newCategory():
+    if 'username' not in login_session:
+        return redirect('/login')
     if request.method == 'POST':
         urlSlug = request.form['name'].replace(" ", "")
         newCategory = Category(name=request.form['name'],slug=urlSlug)
@@ -171,6 +173,8 @@ def showCategory(category_slug):
 
 @app.route('/catalog/<category_slug>/edit/', methods=['GET', 'POST'])
 def editCategory(category_slug):
+    if 'username' not in login_session:
+        return redirect('/login')
     editCategory = session.query(Category).filter_by(slug=category_slug).one()
     if request.method == 'POST':
         if request.form['name']:
@@ -182,6 +186,8 @@ def editCategory(category_slug):
 
 @app.route('/catalog/<category_slug>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_slug):
+    if 'username' not in login_session:
+        return redirect('/login')
     categoryToDelete = session.query(Category).filter_by(slug=category_slug).one()
     if request.method == 'POST':
         session.delete(categoryToDelete)
@@ -193,6 +199,8 @@ def deleteCategory(category_slug):
 # Item CRUD Routes
 @app.route('/catalog/<category_slug>/new/', methods=['GET', 'POST'])
 def newItem(category_slug):
+    if 'username' not in login_session:
+        return redirect('/login')
     category = session.query(Category).filter_by(slug=category_slug).one()
     if request.method == 'POST':
         newItem = Item(name=request.form['name'],description=request.form['description'],category_id=category.id)
@@ -210,6 +218,8 @@ def showItem(category_slug, item_id):
 
 @app.route('/catalog/<category_slug>/<int:item_id>/edit/', methods=['GET', 'POST'])
 def editItem(category_slug, item_id):
+    if 'username' not in login_session:
+        return redirect('/login')
     category = session.query(Category).filter_by(slug=category_slug).one()
     editedItem = session.query(Item).filter_by(id=item_id).one()
     if request.method == 'POST':
@@ -225,6 +235,8 @@ def editItem(category_slug, item_id):
 
 @app.route('/catalog/<category_slug>/<int:item_id>/delete/', methods=['GET', 'POST'])
 def deleteItem(category_slug, item_id):
+    if 'username' not in login_session:
+        return redirect('/login')
     category = session.query(Category).filter_by(slug=category_slug).one()
     itemToDelete = session.query(Item).filter_by(id=item_id).one()
     if request.method == 'POST':
