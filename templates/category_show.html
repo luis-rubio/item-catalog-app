@@ -6,6 +6,8 @@
 
 {% for i in items %}
   <p>
-    {{ i.name }}
+    <a href="{{url_for('showItem', category_slug = category.slug, item_id = i.id)}}">
+      {{ i.name }}
+    </a>
   </p>
 {% endfor %}
