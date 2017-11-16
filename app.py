@@ -58,9 +58,16 @@ def deleteCategory(category_slug):
         return render_template('category_delete.html', category=categoryToDelete)
 
 # Item CRUD Routes
-@app.route('/catalog/<category_slug>/new')
+@app.route('/catalog/<category_slug>/new', methods=['GET', 'POST'])
 def newItem(category_slug):
-    return render_template('item_new.html')
+    category = session.query(Category).filter_by(slug=category_slug).one()
+    if request.method == 'POST':
+        newItem = Item(name=request.form['name'],description=request.form['description'],category_id=category.id)
+        session.add(newItem)
+        session.commit()
+        return redirect(url_for('showCategory', category_slug=category.slug))
+    else:
+        return render_template('item_new.html')
 
 @app.route('/catalog/<category_slug>/<int:item_id>')
 def showItem(category_slug, item_id):
