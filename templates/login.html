@@ -16,14 +16,13 @@
 
 <body>
 
-
 <!-- GOOGLE PLUS SIGN IN-->
 
 
           <div id="signinButton">
           <span class="g-signin"
             data-scope="openid email"
-            data-clientid="13140951618-15nik769cellkubaqnjk5facdib2dh4d.apps.googleusercontent.com"
+            data-clientid="989472630566-ut847io6o12s1ecbjf651s7qi4e2vpo6.apps.googleusercontent.com"
             data-redirecturi="postmessage"
             data-accesstype="offline"
             data-cookiepolicy="single_host_origin"
@@ -51,7 +50,7 @@ function signInCallback(authResult) {
         if (result) {
           $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
          setTimeout(function() {
-          window.location.href = "/restaurant";
+          window.location.href = "/";
          }, 4000);
 
       } else if (authResult['error']) {
