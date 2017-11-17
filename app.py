@@ -179,6 +179,12 @@ def indexCatalog():
     items = session.query(Item).all()
     return render_template('index.html', categories = categories, items=items)
 
+@app.route('/item/<int:category_id>/<int:item_id>')
+def redirectToShowItem(category_id, item_id):
+    category = session.query(Category).filter_by(id=category_id).one()
+    item = session.query(Item).filter_by(id=item_id).one()
+    return redirect(url_for('showItem', category_slug=category.slug, item_id=item.id))
+
 # Category CRUD Routes
 @app.route('/catalog/new/', methods=['GET', 'POST'])
 def newCategory():
@@ -198,13 +204,16 @@ def newCategory():
 def showCategory(category_slug):
     category = session.query(Category).filter_by(slug=category_slug).one()
     items = session.query(Item).filter_by(category_id=category.id).all()
-    return render_template('category_show.html', items=items, category=category)
+    creator = getUserInfo(category.user_id)
+    return render_template('category_show.html', items=items, category=category, creator=creator)
 
 @app.route('/catalog/<category_slug>/edit/', methods=['GET', 'POST'])
 def editCategory(category_slug):
+    editCategory = session.query(Category).filter_by(slug=category_slug).one()
     if 'username' not in login_session:
         return redirect('/login')
-    editCategory = session.query(Category).filter_by(slug=category_slug).one()
+    if editCategory.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('NO');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         if request.form['name']:
             editCategory.slug = request.form['name'].replace(" ", "")
@@ -215,9 +224,11 @@ def editCategory(category_slug):
 
 @app.route('/catalog/<category_slug>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_slug):
+    categoryToDelete = session.query(Category).filter_by(slug=category_slug).one()
     if 'username' not in login_session:
         return redirect('/login')
-    categoryToDelete = session.query(Category).filter_by(slug=category_slug).one()
+    if categoryToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('NO');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         session.delete(categoryToDelete)
         session.commit()
@@ -249,14 +260,17 @@ def newItem(category_slug):
 def showItem(category_slug, item_id):
     category = session.query(Category).filter_by(slug=category_slug).one()
     item = session.query(Item).filter_by(id=item_id).one()
-    return render_template('item_show.html', item=item, category=category)
+    creator = getUserInfo(item.user_id)
+    return render_template('item_show.html', item=item, category=category, creator=creator)
 
 @app.route('/catalog/<category_slug>/<int:item_id>/edit/', methods=['GET', 'POST'])
 def editItem(category_slug, item_id):
-    if 'username' not in login_session:
-        return redirect('/login')
     category = session.query(Category).filter_by(slug=category_slug).one()
     editedItem = session.query(Item).filter_by(id=item_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if editedItem.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('NO');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -274,6 +288,8 @@ def deleteItem(category_slug, item_id):
         return redirect('/login')
     category = session.query(Category).filter_by(slug=category_slug).one()
     itemToDelete = session.query(Item).filter_by(id=item_id).one()
+    if itemToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('NO');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()

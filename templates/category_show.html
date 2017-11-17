@@ -7,11 +7,13 @@
     <li class="active">{{ category.name }}</li>
   </ul>
   <h1 class="app-title">c/{{ category.name }}</h1>
-  <p class="lead app-description">
-    <a href="{{url_for('newItem', category_slug = category.slug)}}" class="btn btn-lg btn-default">
-      Add item to {{ category.name }}
-    </a>
-  </p>
+  {%if 'username' in session %}
+    <p class="lead app-description">
+      <a href="{{url_for('newItem', category_slug = category.slug)}}" class="btn btn-lg btn-default">
+        Add item to {{ category.name }}
+      </a>
+    </p>
+  {% endif %}
 </div>
 <h3>{{ category.name }} Items</h3>
 {% for i in items %}
@@ -21,7 +23,14 @@
     </a>
   </p>
 {% endfor %}
+
+<p>
+  Category created by <b>{{ creator.name }}</b>
+</p>
+
+{% if category.user_id == session['user_id'] %}
 <hr>
+
 <div class="panel panel-default">
   <div class="panel-heading">Edit "{{ category.name }}"</div>
   <div class="panel-body">
@@ -29,4 +38,5 @@
     <a class="btn btn-danger" href="{{ url_for('deleteCategory', category_slug = category.slug) }}">Delete</a>
   </div>
 </div>
+{% endif %}
 {% endblock %}

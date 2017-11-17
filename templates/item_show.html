@@ -16,7 +16,10 @@
 <p>
   <b>Description:</b> {{ item.description }}
 </p>
-
+<p>
+  <b>Created by:</b> {{ creator.name }}
+</p>
+{% if item.user_id == session['user_id'] %}
 <hr>
 <div class="panel panel-default">
   <div class="panel-heading">Edit '{{ item.name }}'</div>
@@ -25,5 +28,7 @@
     <a class="btn btn-danger" href="{{ url_for('deleteItem', category_slug = category.slug, item_id = item.id) }}">Delete</a>
   </div>
 </div>
+{% endif %}
+
 
 {% endblock %}

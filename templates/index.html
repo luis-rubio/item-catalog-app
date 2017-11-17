@@ -6,9 +6,11 @@
     <li class="active">Home</li>
   </ul>
   <h1 class="app-title">Catalog</h1>
-  <p class="lead app-description">
-    <a href="{{url_for('newCategory')}}" class="btn btn-lg btn-default">Add Category</a>
-  </p>
+  {%if 'username' in session %}
+    <p class="lead app-description">
+      <a href="{{url_for('newCategory')}}" class="btn btn-lg btn-default">Add Category</a>
+    </p>
+  {% endif %}
 </div>
 
 <div class="row">
@@ -16,7 +18,9 @@
     <h3>Latest Items</h3>
     {% for i in items %}
       <p>
+        <a href="{{url_for('redirectToShowItem', category_id=i.category_id, item_id=i.id)}}">
         {{i.name}}
+        </a>
       </p>
     {% endfor %}
   </div>
