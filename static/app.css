@@ -1,0 +1,236 @@
+a {
+  color: #e876af;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #f589bf;
+  text-decoration: underline;
+}
+
+footer a {
+  color: #6e91d3;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #6e91d3;
+  text-decoration: underline;
+}
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 700px;
+  }
+}
+
+/*
+ * Globals
+ */
+
+body {
+  color: #555;
+}
+
+.latest_items {
+  color: #acaab5;
+}
+
+footer {
+  padding-top: 40px;
+  font-size: 0.9em;
+}
+
+/*
+ * Masthead for nav
+ */
+
+.app-masthead {
+  background-color: #7da6f2;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Nav links */
+.app-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #d0e3f4;
+}
+
+.app-nav-item:hover,
+.app-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.app-nav .active {
+  color: #fff;
+}
+
+.app-nav .active::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+/*
+ * app name and description
+ */
+
+.app-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.app-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+  color: #747182;
+}
+
+.app-description {
+  font-size: 20px;
+  color: #999;
+}
+
+a {
+  color: #e876af;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #f589bf;
+  text-decoration: underline;
+}
+
+footer a {
+  color: #6e91d3;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #6e91d3;
+  text-decoration: underline;
+}
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 700px;
+  }
+}
+
+/*
+ * Globals
+ */
+
+body {
+  color: #555;
+}
+
+h3 {
+  margin-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #48302f;
+}
+
+.latest_items {
+  color: #acaab5;
+}
+
+footer {
+  padding-top: 40px;
+  font-size: 0.9em;
+}
+
+/*
+ * Masthead for nav
+ */
+
+.app-masthead {
+  background-color: #7da6f2;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Nav links */
+.app-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #d0e3f4;
+}
+
+.app-nav-item:hover,
+.app-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.app-nav .active {
+  color: #fff;
+}
+
+.app-nav .active::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+/*
+ * app name and description
+ */
+
+.app-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.app-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+  color: #747182;
+}
+
+.app-description {
+  font-size: 20px;
+  color: #999;
+}
