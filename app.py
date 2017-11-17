@@ -176,7 +176,8 @@ def gdisconnect():
 @app.route('/catalog/')
 def indexCatalog():
     categories = session.query(Category).all()
-    return render_template('index.html', categories = categories)
+    items = session.query(Item).all()
+    return render_template('index.html', categories = categories, items=items)
 
 # Category CRUD Routes
 @app.route('/catalog/new/', methods=['GET', 'POST'])
