@@ -3,6 +3,11 @@
 {% block body %}
 
 <div class="app-header">
+  <ul class="breadcrumb">
+    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+    <li><a href="{{url_for('showCategory', category_slug = category.slug)}}">{{ category.name }}</a></li>
+    <li class="active">{{ item.name }}</li>
+  </ul>
   <h1 class="app-title">{{ item.name }}</h1>
   <p class="lead app-description">
     Category: {{ category.name }}
@@ -14,7 +19,7 @@
 
 <hr>
 <div class="panel panel-default">
-  <div class="panel-heading">Edit "{{ item.name }}"</div>
+  <div class="panel-heading">Edit '{{ item.name }}'</div>
   <div class="panel-body">
     <a class="btn btn-app" href="{{ url_for('editItem', category_slug = category.slug, item_id = item.id) }}">Edit</a>
     <a class="btn btn-danger" href="{{ url_for('deleteItem', category_slug = category.slug, item_id = item.id) }}">Delete</a>

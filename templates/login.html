@@ -1,3 +1,6 @@
+{% extends 'layout.html' %}
+
+{% block body %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +18,14 @@
 
 
 <body>
+
+  <div class="app-header">
+    <ul class="breadcrumb">
+      <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+      <li class="active">Login</li>
+    </ul>
+    <h1 class="app-title">Login</h1>
+  </div>
 
 <!-- GOOGLE PLUS SIGN IN-->
 
@@ -70,3 +81,4 @@ function signInCallback(authResult) {
   </body>
 
   </html>
+{% endblock %}

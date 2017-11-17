@@ -2,6 +2,10 @@
 
 {% block body %}
 <div class="app-header">
+  <ul class="breadcrumb">
+    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+    <li class="active">{{ category.name }}</li>
+  </ul>
   <h1 class="app-title">c/{{ category.name }}</h1>
   <p class="lead app-description">
     <a href="{{url_for('newItem', category_slug = category.slug)}}" class="btn btn-lg btn-default">

@@ -242,7 +242,7 @@ def newItem(category_slug):
         session.commit()
         return redirect(url_for('showCategory', category_slug=category.slug))
     else:
-        return render_template('item_new.html')
+        return render_template('item_new.html', category=category)
 
 @app.route('/catalog/<category_slug>/<int:item_id>/')
 def showItem(category_slug, item_id):

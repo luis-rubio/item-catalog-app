@@ -2,6 +2,10 @@
 
 {% block body %}
 <div class="app-header">
+  <ul class="breadcrumb">
+    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+    <li class="active">Add Category</li>
+  </ul>
   <h1 class="app-title">Add Category</h1>
 </div>
 <form action="#" method="post">
