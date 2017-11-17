@@ -1,14 +1,14 @@
 {% extends 'layout.html' %}
-
 {% block body %}
 <p><a href="{{url_for('newCategory')}}">Add Category</a><p>
 
 <p><h1>Categories</h1></p>
 
+
 {% for i in categories %}
 
   <p>
-    {{i.name}} {{i.slug}}
+    {{i.name}} {{i.slug}} {{ i.user_id }}
     ( <a href="{{url_for('showCategory', category_slug = i.slug)}}">View</a>
      | <a href="{{url_for('editCategory', category_slug = i.slug)}}">Edit</a>
      | <a href="{{url_for('deleteCategory', category_slug = i.slug)}}">Delete</a> )

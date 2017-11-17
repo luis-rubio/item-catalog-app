@@ -103,6 +103,12 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
+    # see if user exists, if it doesn't make a new one
+    user_id = getUserID(data["email"])
+    if not user_id:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
+
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
@@ -217,6 +223,12 @@ def deleteCategory(category_slug):
         return redirect(url_for('indexCatalog'))
     else:
         return render_template('category_delete.html', category=categoryToDelete)
+
+#userlist
+@app.route('/users')
+def userList():
+    users = session.query(User).all()
+    return render_template('users.html', users=users)
 
 # Item CRUD Routes
 @app.route('/catalog/<category_slug>/new/', methods=['GET', 'POST'])
