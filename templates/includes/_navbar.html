@@ -1,11 +1,16 @@
-<div class="container">
-  <b>Catalog App</b>
-  <a href="/">Home</a>
-  {%if 'username' not in session %}
-    <a href="/login" class="btn btn-sm btn-primary">Log In</a>
-  {% else %}
-    <a href="/gdisconnect" class="btn btn-sm btn-primary">Log Out ({{ session['username'] }})</a>
-  {% endif %}
-
+<div class="app-masthead">
+  <div class="container">
+    <nav class="app-nav">
+      <a class="app-nav-logo" href="/">Catalog App</a>
+      {%if 'username' not in session %}
+        <a class="app-nav-item navbar-right" href="{{url_for('showLogin')}}">
+          Log in
+        </a>
+      {% else %}
+        <a class="app-nav-item navbar-right" href="#">
+          Log out ({{ session['username'] }})
+        </a>
+      {% endif %}
+    </nav>
+  </div>
 </div>
-<br>

@@ -1,12 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<p>
-  <a href="{{url_for('newItem', category_slug = category.slug)}}">Add item to {{ category.name }}</a>
-</p>
-
-<h1>{{ category.name }} items</h1>
-
+<div class="app-header">
+  <h1 class="app-title">c/{{ category.name }}</h1>
+  <p class="lead app-description">
+    <a href="{{url_for('newItem', category_slug = category.slug)}}" class="btn btn-lg btn-default">
+      Add item to {{ category.name }}
+    </a>
+  </p>
+</div>
+<h3>{{ category.name }} Items</h3>
 {% for i in items %}
   <p>
     <a href="{{url_for('showItem', category_slug = category.slug, item_id = i.id)}}">
@@ -14,4 +17,12 @@
     </a>
   </p>
 {% endfor %}
+<hr>
+<div class="panel panel-default">
+  <div class="panel-heading">Edit "{{ category.name }}"</div>
+  <div class="panel-body">
+    <a class="btn btn-app" href="{{ url_for('editCategory', category_slug = category.slug) }}">Edit</a>
+    <a class="btn btn-danger" href="{{ url_for('deleteCategory', category_slug = category.slug) }}">Delete</a>
+  </div>
+</div>
 {% endblock %}

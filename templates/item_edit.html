@@ -1,11 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<h1>Edit item</h1>
-
+<div class="app-header">
+  <h1 class="app-title">Edit Item - {{ item.name }}</h1>
+</div>
 <form action="#" method="post">
-  Name: <input type="text" name="name" value="{{ item.name }}"><br>
-  Description: <input type="text" name="description" value="{{ item.description }}"><br>
-  <input type="submit" value="Edit Item">
+  <div class="form-group">
+    <label for="name">Item Name:</label>
+    <input type="text" class="form-control" name="name" value="{{ item.name }}">
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input type="text" class="form-control" name="description" value="{{ item.description }}">
+  </div>
+  <input type="submit" class="btn btn-app" value="Edit Item">
 </form>
 {% endblock %}

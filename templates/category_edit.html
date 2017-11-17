@@ -1,10 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<h1>Edit category</h1>
-
+<div class="app-header">
+  <h1 class="app-title">Edit c:{{ category.name }}</h1>
+</div>
 <form action="#" method="post">
-  <input type="text" name="name" value="{{ category.name }}">
-  <input type="submit" value="Edit Category">
+  <div class="form-group">
+    <label for="name">Category Name:</label>
+    <input type="text" class="form-control" name="name" value="{{ category.name }}">
+  </div>
+    <input type="submit" class="btn btn-app" value="Edit Category">
 </form>
 {% endblock %}

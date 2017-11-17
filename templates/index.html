@@ -1,18 +1,34 @@
 {% extends 'layout.html' %}
 {% block body %}
-<p><a href="{{url_for('newCategory')}}">Add Category</a><p>
 
-<p><h1>Categories</h1></p>
-
-
-{% for i in categories %}
-
-  <p>
-    {{i.name}} {{i.slug}} {{ i.user_id }}
-    ( <a href="{{url_for('showCategory', category_slug = i.slug)}}">View</a>
-     | <a href="{{url_for('editCategory', category_slug = i.slug)}}">Edit</a>
-     | <a href="{{url_for('deleteCategory', category_slug = i.slug)}}">Delete</a> )
+<div class="app-header">
+  <h1 class="app-title">Catalog</h1>
+  <p class="lead app-description">
+    <a href="{{url_for('newCategory')}}" class="btn btn-lg btn-default">Add Category</a>
   </p>
+</div>
 
-{% endfor %}
+<div class="row">
+  <div class="col-md-7">
+    <h3>Latest Items</h3>
+    <p>
+      <a href="#">
+      Stick
+      </a>
+      (Baseball)
+    </p>
+  </div>
+  <div class="col-md-5">
+    <h3>Categories</h3>
+    {% for i in categories %}
+      <p>
+        <a href="{{url_for('showCategory', category_slug = i.slug)}}">
+          {{i.name}}
+        </a>
+      </p>
+    {% endfor %}
+  </div>
+</div>
+
+
 {% endblock %}
