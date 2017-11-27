@@ -19,6 +19,7 @@
 {% for i in items %}
   <p>
     <a href="{{url_for('showItem', category_slug = category.slug, item_id = i.id)}}">
+      <i class="fa fa-circle-o" aria-hidden="true"></i> 
       {{ i.name }}
     </a>
   </p>

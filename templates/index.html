@@ -19,7 +19,8 @@
     {% for i in items %}
       <p>
         <a href="{{url_for('redirectToShowItem', category_id=i.category_id, item_id=i.id)}}">
-        {{i.name}}
+          <i class="fa fa-circle-o" aria-hidden="true"></i>
+          {{i.name}}
         </a>
       </p>
     {% endfor %}
@@ -29,6 +30,7 @@
     {% for i in categories %}
       <p>
         <a href="{{url_for('showCategory', category_slug = i.slug)}}">
+          <i class="fa fa-circle-o" aria-hidden="true"></i> 
           {{i.name}}
         </a>
       </p>
