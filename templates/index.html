@@ -1,10 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %}
+  <!-- Breadcrumb of app -->
   <div class="app-header">
     <ul class="breadcrumb">
       <li class="active">Home</li>
     </ul>
     <h1 class="app-title">Catalog</h1>
+    <!-- Check if user is logged in to show button -->
     {%if 'username' in session %}
       <p class="lead app-description">
         <a href="{{url_for('newCategory')}}" class="btn btn-lg btn-default">
@@ -16,6 +18,7 @@
   <div class="row">
     <div class="col-md-7">
       <h3>Latest Items</h3>
+      <!-- shows the latest items added -->
       {% for i in items %}
         <p>
           <a href="{{url_for('redirectToShowItem', category_id=i.category_id, item_id=i.id)}}">
@@ -27,6 +30,7 @@
     </div>
     <div class="col-md-5">
       <h3>Categories</h3>
+      <!-- shows the list of categories -->
       {% for i in categories %}
         <p>
           <a href="{{url_for('showCategory', category_slug = i.slug)}}">

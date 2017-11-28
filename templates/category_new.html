@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+  <!-- Breadcrumb of app -->
   <div class="app-header">
     <ul class="breadcrumb">
       <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
@@ -8,6 +9,7 @@
     </ul>
     <h1 class="app-title">Add Category</h1>
   </div>
+  <!-- Category add new form -->
   <form action="#" method="post">
     <div class="form-group">
       <label for="name">Category Name:</label>

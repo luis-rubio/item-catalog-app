@@ -2,6 +2,7 @@
   <div class="container">
     <nav class="app-nav">
       <a class="app-nav-logo" href="/">Catalog App</a>
+      <!-- Check if user is logged in -->
       {%if 'username' not in session %}
         <a class="app-nav-item navbar-right" href="{{url_for('showLogin')}}">
           Log in

@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+  <!-- Breadcrumb of app -->
   <div class="app-header">
     <ul class="breadcrumb">
       <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
@@ -16,12 +17,14 @@
       Category: {{ category.name }}
     </p>
   </div>
+  <!-- item information -->
   <p>
     <b>Description:</b> {{ item.description }}
   </p>
   <p>
     <b>Created by:</b> {{ creator.name }}
   </p>
+  <!-- user panel -->
   {% if item.user_id == session['user_id'] %}
   <hr>
   <div class="panel panel-default">
