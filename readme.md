@@ -3,9 +3,10 @@ A project for Udacity that displays an item catalog. The purpose is to create a 
 ## Installation
 1. Install Vagrant and Virtualbox
 2. Clone `item-catalog-app`
-3. Launch VM (vagrant up)
-4. cd into `catalog` folder
-5. run `python app.py` on terminal
+3. Add `catalog` to virtual host
+4. Launch VM (vagrant up)
+5. cd into `catalog` folder
+6. run `python app.py` on terminal
 ## Usage
 1. Create an account by clicking on the **login** button.
 2. Click on a category to view all items. (Read)
