@@ -1,19 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="app-header">
-  <ul class="breadcrumb">
-    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
-    <li><a href="{{url_for('showCategory', category_slug = category.slug)}}">{{ category.name }}</a></li>
-    <li class="active">Edit</li>
-  </ul>
-  <h1 class="app-title">Edit c:{{ category.name }}</h1>
-</div>
-<form action="#" method="post">
-  <div class="form-group">
-    <label for="name">Category Name:</label>
-    <input type="text" class="form-control" name="name" value="{{ category.name }}">
+  <div class="app-header">
+    <ul class="breadcrumb">
+      <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+      <li>
+        <a href="{{url_for('showCategory', category_slug = category.slug)}}">
+          {{ category.name }}
+        </a>
+      </li>
+      <li class="active">Edit</li>
+    </ul>
+    <h1 class="app-title">Edit c:{{ category.name }}</h1>
   </div>
+  <form action="#" method="post">
+    <div class="form-group">
+      <label for="name">Category Name:</label>
+      <input type="text" class="form-control" name="name"
+      value="{{ category.name }}">
+    </div>
     <input type="submit" class="btn btn-app" value="Edit Category">
-</form>
+  </form>
 {% endblock %}

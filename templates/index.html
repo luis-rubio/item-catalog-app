@@ -1,42 +1,40 @@
 {% extends 'layout.html' %}
 {% block body %}
-
-<div class="app-header">
-  <ul class="breadcrumb">
-    <li class="active">Home</li>
-  </ul>
-  <h1 class="app-title">Catalog</h1>
-  {%if 'username' in session %}
-    <p class="lead app-description">
-      <a href="{{url_for('newCategory')}}" class="btn btn-lg btn-default">Add Category</a>
-    </p>
-  {% endif %}
-</div>
-
-<div class="row">
-  <div class="col-md-7">
-    <h3>Latest Items</h3>
-    {% for i in items %}
-      <p>
-        <a href="{{url_for('redirectToShowItem', category_id=i.category_id, item_id=i.id)}}">
-          <i class="fa fa-circle-o" aria-hidden="true"></i>
-          {{i.name}}
+  <div class="app-header">
+    <ul class="breadcrumb">
+      <li class="active">Home</li>
+    </ul>
+    <h1 class="app-title">Catalog</h1>
+    {%if 'username' in session %}
+      <p class="lead app-description">
+        <a href="{{url_for('newCategory')}}" class="btn btn-lg btn-default">
+          Add Category
         </a>
       </p>
-    {% endfor %}
+    {% endif %}
   </div>
-  <div class="col-md-5">
-    <h3>Categories</h3>
-    {% for i in categories %}
-      <p>
-        <a href="{{url_for('showCategory', category_slug = i.slug)}}">
-          <i class="fa fa-circle-o" aria-hidden="true"></i> 
-          {{i.name}}
-        </a>
-      </p>
-    {% endfor %}
+  <div class="row">
+    <div class="col-md-7">
+      <h3>Latest Items</h3>
+      {% for i in items %}
+        <p>
+          <a href="{{url_for('redirectToShowItem', category_id=i.category_id, item_id=i.id)}}">
+            <i class="fa fa-circle-o" aria-hidden="true"></i>
+            {{i.name}}
+          </a>
+        </p>
+      {% endfor %}
+    </div>
+    <div class="col-md-5">
+      <h3>Categories</h3>
+      {% for i in categories %}
+        <p>
+          <a href="{{url_for('showCategory', category_slug = i.slug)}}">
+            <i class="fa fa-circle-o" aria-hidden="true"></i>
+            {{i.name}}
+          </a>
+        </p>
+      {% endfor %}
+    </div>
   </div>
-</div>
-
-
 {% endblock %}

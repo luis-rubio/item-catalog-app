@@ -1,24 +1,34 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="app-header">
-  <ul class="breadcrumb">
-    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
-    <li><a href="{{url_for('showCategory', category_slug = category.slug)}}">{{ category.name }}</a></li>
-    <li><a href="{{url_for('showItem', category_slug = category.slug, item_id = item.id)}}">{{ item.name }}</a></li>
-    <li class="active">Edit</li>
-  </ul>
-  <h1 class="app-title">Edit Item - {{ item.name }}</h1>
-</div>
-<form action="#" method="post">
-  <div class="form-group">
-    <label for="name">Item Name:</label>
-    <input type="text" class="form-control" name="name" value="{{ item.name }}">
+  <div class="app-header">
+    <ul class="breadcrumb">
+      <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+      <li>
+        <a href="{{url_for('showCategory', category_slug = category.slug)}}">
+          {{ category.name }}
+        </a>
+      </li>
+      <li>
+        <a href="{{url_for('showItem', category_slug = category.slug, item_id = item.id)}}">
+          {{ item.name }}
+        </a>
+      </li>
+      <li class="active">Edit</li>
+    </ul>
+    <h1 class="app-title">Edit Item - {{ item.name }}</h1>
   </div>
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <input type="text" class="form-control" name="description" value="{{ item.description }}">
-  </div>
-  <input type="submit" class="btn btn-app" value="Edit Item">
-</form>
+  <form action="#" method="post">
+    <div class="form-group">
+      <label for="name">Item Name:</label>
+      <input type="text" class="form-control" name="name"
+       value="{{ item.name }}">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" name="description"
+       value="{{ item.description }}">
+    </div>
+    <input type="submit" class="btn btn-app" value="Edit Item">
+  </form>
 {% endblock %}

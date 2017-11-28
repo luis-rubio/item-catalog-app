@@ -1,18 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="app-header">
-  <ul class="breadcrumb">
-    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
-    <li class="active">Add Category</li>
-  </ul>
-  <h1 class="app-title">Add Category</h1>
-</div>
-<form action="#" method="post">
-  <div class="form-group">
-    <label for="name">Category Name:</label>
-    <input type="text" class="form-control" name="name" value="">
+  <div class="app-header">
+    <ul class="breadcrumb">
+      <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+      <li class="active">Add Category</li>
+    </ul>
+    <h1 class="app-title">Add Category</h1>
   </div>
+  <form action="#" method="post">
+    <div class="form-group">
+      <label for="name">Category Name:</label>
+      <input type="text" class="form-control" name="name" value="">
+    </div>
     <input type="submit" class="btn btn-app" value="Add Category">
-</form>
+  </form>
 {% endblock %}

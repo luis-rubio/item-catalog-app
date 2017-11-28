@@ -1,16 +1,22 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="app-header">
-  <ul class="breadcrumb">
-    <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
-    <li><a href="{{url_for('showCategory', category_slug = category.slug)}}">{{ category.name }}</a></li>
-    <li class="active">Delete</li>
-  </ul>
-  <h1 class="app-title">Delete Category</h1>
-</div>
-<h3>Are you sure you want to delete: {{ category.name }}?</h3>
-<form action="#" method = 'post'>
-  <input type='submit', class ='btn btn-danger', value='Delete'>
-</form>
+  <!-- Breadcrumb of app -->
+  <div class="app-header">
+    <ul class="breadcrumb">
+      <li><a href="{{ url_for('indexCatalog') }}">Home</a></li>
+      <li>
+        <a href="{{url_for('showCategory', category_slug = category.slug)}}">
+          {{ category.name }}
+        </a>
+      </li>
+      <li class="active">Delete</li>
+    </ul>
+    <h1 class="app-title">Delete Category</h1>
+  </div>
+  <!-- Category delete form -->
+  <h3>Are you sure you want to delete: {{ category.name }}?</h3>
+  <form action="#" method = 'post'>
+    <input type='submit', class ='btn btn-danger', value='Delete'>
+  </form>
 {% endblock %}
