@@ -25,6 +25,12 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.route('/catalog.json')
+def iJSON():
+    categories = session.query(Category).all()
+    items = session.query(Item).all()
+    return jsonify(categories=[r.serialize for r in categories], items=[r.serialize for r in items])
+
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
@@ -236,12 +242,6 @@ def deleteCategory(category_slug):
     else:
         return render_template('category_delete.html', category=categoryToDelete)
 
-#userlist
-@app.route('/users')
-def userList():
-    users = session.query(User).all()
-    return render_template('users.html', users=users)
-
 # Item CRUD Routes
 @app.route('/catalog/<category_slug>/new/', methods=['GET', 'POST'])
 def newItem(category_slug):
@@ -301,4 +301,4 @@ def deleteItem(category_slug, item_id):
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
-    app.run(host = '0.0.0.0', port = 8000)
+    app.run(host = '0.0.0.0', port = 5000)
