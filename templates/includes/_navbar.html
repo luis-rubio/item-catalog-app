@@ -8,7 +8,7 @@
           Log in
         </a>
       {% else %}
-        <a class="app-nav-item navbar-right" href="#">
+        <a class="app-nav-item navbar-right" href="{{url_for('gdisconnect')}}">
           Log out ({{ session['username'] }})
         </a>
       {% endif %}

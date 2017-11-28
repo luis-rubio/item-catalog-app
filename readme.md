@@ -5,12 +5,13 @@ A project for Udacity that displays an item catalog. The purpose is to create a 
 2. Clone `item-catalog-app`
 3. Add `catalog` to virtual host
 4. Launch VM (vagrant up)
-5. cd into `catalog` folder
-6. run `python app.py` on terminal
+5. CD into `catalog` folder
+6. Run `python app.py` on terminal
 ## Usage
-1. Create an account by clicking on the **login** button.
-2. Click on a category to view all items. (Read)
-3. Click "Add item to category" to add new item. (Create)
+1. Go to "http://localhost:8000" on your browser.
+2. Create an account by clicking on the **login** button.
+3. Click on a category to view all items. (Read)
+4. Click "Add item to category" to add new item. (Create)
 - You can **edit** or **delete** an item if you created it.
 - Click **logout** button to disconnect.
 ## To Do List
